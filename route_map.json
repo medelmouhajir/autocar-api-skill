@@ -1,0 +1,186 @@
+{
+    "list_customers": {
+        "method": "GET",
+        "path": "api/v1/Customers"
+    },
+    "get_customer": {
+        "method": "GET",
+        "path": "api/v1/Customers/{id}"
+    },
+    "create_customer": {
+        "method": "POST",
+        "path": "api/v1/Customers"
+    },
+    "update_customer": {
+        "method": "PUT",
+        "path": "api/v1/Customers/{id}"
+    },
+    "delete_customer": {
+        "method": "DELETE",
+        "path": "api/v1/Customers/{id}"
+    },
+    "list_invoices": {
+        "method": "GET",
+        "path": "api/v1/Invoices"
+    },
+    "get_invoice": {
+        "method": "GET",
+        "path": "api/v1/Invoices/{id}"
+    },
+    "create_invoice": {
+        "method": "POST",
+        "path": "api/v1/Invoices"
+    },
+    "update_invoice": {
+        "method": "PUT",
+        "path": "api/v1/Invoices/{id}"
+    },
+    "delete_invoice": {
+        "method": "DELETE",
+        "path": "api/v1/Invoices/{id}"
+    },
+    "list_parts": {
+        "method": "GET",
+        "path": "api/v1/Parts"
+    },
+    "get_part": {
+        "method": "GET",
+        "path": "api/v1/Parts/{id}"
+    },
+    "create_part": {
+        "method": "POST",
+        "path": "api/v1/Parts"
+    },
+    "update_part": {
+        "method": "PUT",
+        "path": "api/v1/Parts/{id}"
+    },
+    "delete_part": {
+        "method": "DELETE",
+        "path": "api/v1/Parts/{id}"
+    },
+    "list_work_orders": {
+        "method": "GET",
+        "path": "api/v1/WorkOrders"
+    },
+    "get_work_order": {
+        "method": "GET",
+        "path": "api/v1/WorkOrders/{id}"
+    },
+    "create_work_order": {
+        "method": "POST",
+        "path": "api/v1/WorkOrders"
+    },
+    "update_work_order": {
+        "method": "PUT",
+        "path": "api/v1/WorkOrders/{id}"
+    },
+    "delete_work_order": {
+        "method": "DELETE",
+        "path": "api/v1/WorkOrders/{id}"
+    },
+    "list_vehicles": {
+        "method": "GET",
+        "path": "api/v1/Vehicles"
+    },
+    "get_vehicle": {
+        "method": "GET",
+        "path": "api/v1/Vehicles/{id}"
+    },
+    "create_vehicle": {
+        "method": "POST",
+        "path": "api/v1/Vehicles"
+    },
+    "update_vehicle": {
+        "method": "PUT",
+        "path": "api/v1/Vehicles/{id}"
+    },
+    "delete_vehicle": {
+        "method": "DELETE",
+        "path": "api/v1/Vehicles/{id}"
+    },
+    "list_purchase_orders": {
+        "method": "GET",
+        "path": "api/v1/PurchaseOrders"
+    },
+    "get_purchase_order": {
+        "method": "GET",
+        "path": "api/v1/PurchaseOrders/{id}"
+    },
+    "create_purchase_order": {
+        "method": "POST",
+        "path": "api/v1/PurchaseOrders"
+    },
+    "update_purchase_order": {
+        "method": "PUT",
+        "path": "api/v1/PurchaseOrders/{id}"
+    },
+    "delete_purchase_order": {
+        "method": "DELETE",
+        "path": "api/v1/PurchaseOrders/{id}"
+    },
+    "list_suppliers": {
+        "method": "GET",
+        "path": "api/v1/Suppliers"
+    },
+    "get_supplier": {
+        "method": "GET",
+        "path": "api/v1/Suppliers/{id}"
+    },
+    "create_supplier": {
+        "method": "POST",
+        "path": "api/v1/Suppliers"
+    },
+    "update_supplier": {
+        "method": "PUT",
+        "path": "api/v1/Suppliers/{id}"
+    },
+    "delete_supplier": {
+        "method": "DELETE",
+        "path": "api/v1/Suppliers/{id}"
+    },
+    "list_categorys": {
+        "method": "GET",
+        "path": "api/v1/Categories"
+    },
+    "get_category": {
+        "method": "GET",
+        "path": "api/v1/Categories/{id}"
+    },
+    "create_category": {
+        "method": "POST",
+        "path": "api/v1/Categories"
+    },
+    "update_category": {
+        "method": "PUT",
+        "path": "api/v1/Categories/{id}"
+    },
+    "delete_category": {
+        "method": "DELETE",
+        "path": "api/v1/Categories/{id}"
+    },
+    "list_staffs": {
+        "method": "GET",
+        "path": "api/v1/Staff"
+    },
+    "get_staff": {
+        "method": "GET",
+        "path": "api/v1/Staff/{id}"
+    },
+    "create_staff": {
+        "method": "POST",
+        "path": "api/v1/Staff"
+    },
+    "update_staff": {
+        "method": "PUT",
+        "path": "api/v1/Staff/{id}"
+    },
+    "delete_staff": {
+        "method": "DELETE",
+        "path": "api/v1/Staff/{id}"
+    },
+    "health_check": {
+        "method": "GET",
+        "path": "api/v1/Health"
+    }
+}

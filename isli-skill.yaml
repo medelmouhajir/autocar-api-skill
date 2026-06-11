@@ -1,0 +1,522 @@
+isli_version: '2.0'
+id: autocar-api
+name: AutoCar API Connector
+description: Connects to the AutoCar Software API with explicit tools for each entity.
+version: 2.0.0
+author: AI Agent
+category: workspace
+runtime:
+  port: 8000
+  build:
+    context: .
+    dockerfile: Dockerfile
+auth:
+  type: internal_jwt
+tools:
+- name: login
+  description: Authenticate with your staff account. Tokens are stored internally.
+  endpoint: login
+  method: POST
+  parameters:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - password
+- name: list_customers
+  description: Fetch all records from customers.
+  endpoint: list_customers
+  method: POST
+  parameters:
+    type: object
+    properties: {}
+- name: get_customer
+  description: Get a specific customer by its unique ID (GUID).
+  endpoint: get_customer
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: create_customer
+  description: Create a new customer record.
+  endpoint: create_customer
+  method: POST
+  parameters:
+    type: object
+    properties:
+      data:
+        type: object
+    required:
+    - data
+- name: update_customer
+  description: Modify an existing customer record by ID.
+  endpoint: update_customer
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+      data:
+        type: object
+    required:
+    - id
+    - data
+- name: delete_customer
+  description: Permanently remove a customer by ID.
+  endpoint: delete_customer
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: list_invoices
+  description: Fetch all records from invoices.
+  endpoint: list_invoices
+  method: POST
+  parameters:
+    type: object
+    properties: {}
+- name: get_invoice
+  description: Get a specific invoice by its unique ID (GUID).
+  endpoint: get_invoice
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: create_invoice
+  description: Create a new invoice record.
+  endpoint: create_invoice
+  method: POST
+  parameters:
+    type: object
+    properties:
+      data:
+        type: object
+    required:
+    - data
+- name: update_invoice
+  description: Modify an existing invoice record by ID.
+  endpoint: update_invoice
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+      data:
+        type: object
+    required:
+    - id
+    - data
+- name: delete_invoice
+  description: Permanently remove a invoice by ID.
+  endpoint: delete_invoice
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: list_parts
+  description: Fetch all records from parts.
+  endpoint: list_parts
+  method: POST
+  parameters:
+    type: object
+    properties: {}
+- name: get_part
+  description: Get a specific part by its unique ID (GUID).
+  endpoint: get_part
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: create_part
+  description: Create a new part record.
+  endpoint: create_part
+  method: POST
+  parameters:
+    type: object
+    properties:
+      data:
+        type: object
+    required:
+    - data
+- name: update_part
+  description: Modify an existing part record by ID.
+  endpoint: update_part
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+      data:
+        type: object
+    required:
+    - id
+    - data
+- name: delete_part
+  description: Permanently remove a part by ID.
+  endpoint: delete_part
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: list_work_orders
+  description: Fetch all records from work_orders.
+  endpoint: list_work_orders
+  method: POST
+  parameters:
+    type: object
+    properties: {}
+- name: get_work_order
+  description: Get a specific work_order by its unique ID (GUID).
+  endpoint: get_work_order
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: create_work_order
+  description: Create a new work_order record.
+  endpoint: create_work_order
+  method: POST
+  parameters:
+    type: object
+    properties:
+      data:
+        type: object
+    required:
+    - data
+- name: update_work_order
+  description: Modify an existing work_order record by ID.
+  endpoint: update_work_order
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+      data:
+        type: object
+    required:
+    - id
+    - data
+- name: delete_work_order
+  description: Permanently remove a work_order by ID.
+  endpoint: delete_work_order
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: list_vehicles
+  description: Fetch all records from vehicles.
+  endpoint: list_vehicles
+  method: POST
+  parameters:
+    type: object
+    properties: {}
+- name: get_vehicle
+  description: Get a specific vehicle by its unique ID (GUID).
+  endpoint: get_vehicle
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: create_vehicle
+  description: Create a new vehicle record.
+  endpoint: create_vehicle
+  method: POST
+  parameters:
+    type: object
+    properties:
+      data:
+        type: object
+    required:
+    - data
+- name: update_vehicle
+  description: Modify an existing vehicle record by ID.
+  endpoint: update_vehicle
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+      data:
+        type: object
+    required:
+    - id
+    - data
+- name: delete_vehicle
+  description: Permanently remove a vehicle by ID.
+  endpoint: delete_vehicle
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: list_purchase_orders
+  description: Fetch all records from purchase_orders.
+  endpoint: list_purchase_orders
+  method: POST
+  parameters:
+    type: object
+    properties: {}
+- name: get_purchase_order
+  description: Get a specific purchase_order by its unique ID (GUID).
+  endpoint: get_purchase_order
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: create_purchase_order
+  description: Create a new purchase_order record.
+  endpoint: create_purchase_order
+  method: POST
+  parameters:
+    type: object
+    properties:
+      data:
+        type: object
+    required:
+    - data
+- name: update_purchase_order
+  description: Modify an existing purchase_order record by ID.
+  endpoint: update_purchase_order
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+      data:
+        type: object
+    required:
+    - id
+    - data
+- name: delete_purchase_order
+  description: Permanently remove a purchase_order by ID.
+  endpoint: delete_purchase_order
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: list_suppliers
+  description: Fetch all records from suppliers.
+  endpoint: list_suppliers
+  method: POST
+  parameters:
+    type: object
+    properties: {}
+- name: get_supplier
+  description: Get a specific supplier by its unique ID (GUID).
+  endpoint: get_supplier
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: create_supplier
+  description: Create a new supplier record.
+  endpoint: create_supplier
+  method: POST
+  parameters:
+    type: object
+    properties:
+      data:
+        type: object
+    required:
+    - data
+- name: update_supplier
+  description: Modify an existing supplier record by ID.
+  endpoint: update_supplier
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+      data:
+        type: object
+    required:
+    - id
+    - data
+- name: delete_supplier
+  description: Permanently remove a supplier by ID.
+  endpoint: delete_supplier
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: list_categorys
+  description: Fetch all records from categorys.
+  endpoint: list_categorys
+  method: POST
+  parameters:
+    type: object
+    properties: {}
+- name: get_category
+  description: Get a specific category by its unique ID (GUID).
+  endpoint: get_category
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: create_category
+  description: Create a new category record.
+  endpoint: create_category
+  method: POST
+  parameters:
+    type: object
+    properties:
+      data:
+        type: object
+    required:
+    - data
+- name: update_category
+  description: Modify an existing category record by ID.
+  endpoint: update_category
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+      data:
+        type: object
+    required:
+    - id
+    - data
+- name: delete_category
+  description: Permanently remove a category by ID.
+  endpoint: delete_category
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: list_staffs
+  description: Fetch all records from staffs.
+  endpoint: list_staffs
+  method: POST
+  parameters:
+    type: object
+    properties: {}
+- name: get_staff
+  description: Get a specific staff by its unique ID (GUID).
+  endpoint: get_staff
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: create_staff
+  description: Create a new staff record.
+  endpoint: create_staff
+  method: POST
+  parameters:
+    type: object
+    properties:
+      data:
+        type: object
+    required:
+    - data
+- name: update_staff
+  description: Modify an existing staff record by ID.
+  endpoint: update_staff
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+      data:
+        type: object
+    required:
+    - id
+    - data
+- name: delete_staff
+  description: Permanently remove a staff by ID.
+  endpoint: delete_staff
+  method: POST
+  parameters:
+    type: object
+    properties:
+      id:
+        type: string
+    required:
+    - id
+- name: check_health
+  description: Check the health of the AutoCar backend API.
+  endpoint: health_check
+  method: POST
+  parameters:
+    type: object
+    properties: {}
