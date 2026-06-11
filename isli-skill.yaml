@@ -1,20 +1,20 @@
 isli_version: '2.0'
 id: autocar-api
 name: AutoCar API Connector
-description: Connects to the AutoCar Software API with explicit tools for each entity.
-version: 2.0.0
+description: Connects to the AutoCar Software API with explicit, stateless tools (Optimized
+  for local architecture).
+version: 3.0.0
 author: AI Agent
 category: workspace
 runtime:
-  port: 8000
+  port: 8101
   build:
     context: .
     dockerfile: Dockerfile
-auth:
-  type: internal_jwt
 tools:
 - name: login
-  description: Authenticate with your staff account. Tokens are stored internally.
+  description: Authenticate with your staff account. Returns an accessToken that MUST
+    be passed in the payload of all other tools.
   endpoint: login
   method: POST
   parameters:
@@ -28,14 +28,19 @@ tools:
     - email
     - password
 - name: list_customers
-  description: Fetch all records from customers.
+  description: Fetch all records from customers. Requires 'access_token'.
   endpoint: list_customers
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
 - name: get_customer
-  description: Get a specific customer by its unique ID (GUID).
+  description: Get a specific customer by its unique ID. Requires 'access_token' and
+    'id'.
   endpoint: get_customer
   method: POST
   parameters:
@@ -43,10 +48,13 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: create_customer
-  description: Create a new customer record.
+  description: Create a new customer. Requires 'access_token' and a 'data' object.
   endpoint: create_customer
   method: POST
   parameters:
@@ -54,10 +62,14 @@ tools:
     properties:
       data:
         type: object
+      access_token:
+        type: string
     required:
     - data
+    - access_token
 - name: update_customer
-  description: Modify an existing customer record by ID.
+  description: Modify an existing customer. Requires 'access_token', 'id', and 'data'
+    object.
   endpoint: update_customer
   method: POST
   parameters:
@@ -67,11 +79,14 @@ tools:
         type: string
       data:
         type: object
+      access_token:
+        type: string
     required:
     - id
     - data
+    - access_token
 - name: delete_customer
-  description: Permanently remove a customer by ID.
+  description: Permanently remove a customer by ID. Requires 'access_token'.
   endpoint: delete_customer
   method: POST
   parameters:
@@ -79,17 +94,25 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: list_invoices
-  description: Fetch all records from invoices.
+  description: Fetch all records from invoices. Requires 'access_token'.
   endpoint: list_invoices
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
 - name: get_invoice
-  description: Get a specific invoice by its unique ID (GUID).
+  description: Get a specific invoice by its unique ID. Requires 'access_token' and
+    'id'.
   endpoint: get_invoice
   method: POST
   parameters:
@@ -97,10 +120,13 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: create_invoice
-  description: Create a new invoice record.
+  description: Create a new invoice. Requires 'access_token' and a 'data' object.
   endpoint: create_invoice
   method: POST
   parameters:
@@ -108,10 +134,14 @@ tools:
     properties:
       data:
         type: object
+      access_token:
+        type: string
     required:
     - data
+    - access_token
 - name: update_invoice
-  description: Modify an existing invoice record by ID.
+  description: Modify an existing invoice. Requires 'access_token', 'id', and 'data'
+    object.
   endpoint: update_invoice
   method: POST
   parameters:
@@ -121,11 +151,14 @@ tools:
         type: string
       data:
         type: object
+      access_token:
+        type: string
     required:
     - id
     - data
+    - access_token
 - name: delete_invoice
-  description: Permanently remove a invoice by ID.
+  description: Permanently remove a invoice by ID. Requires 'access_token'.
   endpoint: delete_invoice
   method: POST
   parameters:
@@ -133,17 +166,24 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: list_parts
-  description: Fetch all records from parts.
+  description: Fetch all records from parts. Requires 'access_token'.
   endpoint: list_parts
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
 - name: get_part
-  description: Get a specific part by its unique ID (GUID).
+  description: Get a specific part by its unique ID. Requires 'access_token' and 'id'.
   endpoint: get_part
   method: POST
   parameters:
@@ -151,10 +191,13 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: create_part
-  description: Create a new part record.
+  description: Create a new part. Requires 'access_token' and a 'data' object.
   endpoint: create_part
   method: POST
   parameters:
@@ -162,10 +205,14 @@ tools:
     properties:
       data:
         type: object
+      access_token:
+        type: string
     required:
     - data
+    - access_token
 - name: update_part
-  description: Modify an existing part record by ID.
+  description: Modify an existing part. Requires 'access_token', 'id', and 'data'
+    object.
   endpoint: update_part
   method: POST
   parameters:
@@ -175,11 +222,14 @@ tools:
         type: string
       data:
         type: object
+      access_token:
+        type: string
     required:
     - id
     - data
+    - access_token
 - name: delete_part
-  description: Permanently remove a part by ID.
+  description: Permanently remove a part by ID. Requires 'access_token'.
   endpoint: delete_part
   method: POST
   parameters:
@@ -187,17 +237,25 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: list_work_orders
-  description: Fetch all records from work_orders.
+  description: Fetch all records from work_orders. Requires 'access_token'.
   endpoint: list_work_orders
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
 - name: get_work_order
-  description: Get a specific work_order by its unique ID (GUID).
+  description: Get a specific work_order by its unique ID. Requires 'access_token'
+    and 'id'.
   endpoint: get_work_order
   method: POST
   parameters:
@@ -205,10 +263,13 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: create_work_order
-  description: Create a new work_order record.
+  description: Create a new work_order. Requires 'access_token' and a 'data' object.
   endpoint: create_work_order
   method: POST
   parameters:
@@ -216,10 +277,14 @@ tools:
     properties:
       data:
         type: object
+      access_token:
+        type: string
     required:
     - data
+    - access_token
 - name: update_work_order
-  description: Modify an existing work_order record by ID.
+  description: Modify an existing work_order. Requires 'access_token', 'id', and 'data'
+    object.
   endpoint: update_work_order
   method: POST
   parameters:
@@ -229,11 +294,14 @@ tools:
         type: string
       data:
         type: object
+      access_token:
+        type: string
     required:
     - id
     - data
+    - access_token
 - name: delete_work_order
-  description: Permanently remove a work_order by ID.
+  description: Permanently remove a work_order by ID. Requires 'access_token'.
   endpoint: delete_work_order
   method: POST
   parameters:
@@ -241,17 +309,25 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: list_vehicles
-  description: Fetch all records from vehicles.
+  description: Fetch all records from vehicles. Requires 'access_token'.
   endpoint: list_vehicles
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
 - name: get_vehicle
-  description: Get a specific vehicle by its unique ID (GUID).
+  description: Get a specific vehicle by its unique ID. Requires 'access_token' and
+    'id'.
   endpoint: get_vehicle
   method: POST
   parameters:
@@ -259,10 +335,13 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: create_vehicle
-  description: Create a new vehicle record.
+  description: Create a new vehicle. Requires 'access_token' and a 'data' object.
   endpoint: create_vehicle
   method: POST
   parameters:
@@ -270,10 +349,14 @@ tools:
     properties:
       data:
         type: object
+      access_token:
+        type: string
     required:
     - data
+    - access_token
 - name: update_vehicle
-  description: Modify an existing vehicle record by ID.
+  description: Modify an existing vehicle. Requires 'access_token', 'id', and 'data'
+    object.
   endpoint: update_vehicle
   method: POST
   parameters:
@@ -283,11 +366,14 @@ tools:
         type: string
       data:
         type: object
+      access_token:
+        type: string
     required:
     - id
     - data
+    - access_token
 - name: delete_vehicle
-  description: Permanently remove a vehicle by ID.
+  description: Permanently remove a vehicle by ID. Requires 'access_token'.
   endpoint: delete_vehicle
   method: POST
   parameters:
@@ -295,17 +381,25 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: list_purchase_orders
-  description: Fetch all records from purchase_orders.
+  description: Fetch all records from purchase_orders. Requires 'access_token'.
   endpoint: list_purchase_orders
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
 - name: get_purchase_order
-  description: Get a specific purchase_order by its unique ID (GUID).
+  description: Get a specific purchase_order by its unique ID. Requires 'access_token'
+    and 'id'.
   endpoint: get_purchase_order
   method: POST
   parameters:
@@ -313,10 +407,13 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: create_purchase_order
-  description: Create a new purchase_order record.
+  description: Create a new purchase_order. Requires 'access_token' and a 'data' object.
   endpoint: create_purchase_order
   method: POST
   parameters:
@@ -324,10 +421,14 @@ tools:
     properties:
       data:
         type: object
+      access_token:
+        type: string
     required:
     - data
+    - access_token
 - name: update_purchase_order
-  description: Modify an existing purchase_order record by ID.
+  description: Modify an existing purchase_order. Requires 'access_token', 'id', and
+    'data' object.
   endpoint: update_purchase_order
   method: POST
   parameters:
@@ -337,11 +438,14 @@ tools:
         type: string
       data:
         type: object
+      access_token:
+        type: string
     required:
     - id
     - data
+    - access_token
 - name: delete_purchase_order
-  description: Permanently remove a purchase_order by ID.
+  description: Permanently remove a purchase_order by ID. Requires 'access_token'.
   endpoint: delete_purchase_order
   method: POST
   parameters:
@@ -349,17 +453,25 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: list_suppliers
-  description: Fetch all records from suppliers.
+  description: Fetch all records from suppliers. Requires 'access_token'.
   endpoint: list_suppliers
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
 - name: get_supplier
-  description: Get a specific supplier by its unique ID (GUID).
+  description: Get a specific supplier by its unique ID. Requires 'access_token' and
+    'id'.
   endpoint: get_supplier
   method: POST
   parameters:
@@ -367,10 +479,13 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: create_supplier
-  description: Create a new supplier record.
+  description: Create a new supplier. Requires 'access_token' and a 'data' object.
   endpoint: create_supplier
   method: POST
   parameters:
@@ -378,10 +493,14 @@ tools:
     properties:
       data:
         type: object
+      access_token:
+        type: string
     required:
     - data
+    - access_token
 - name: update_supplier
-  description: Modify an existing supplier record by ID.
+  description: Modify an existing supplier. Requires 'access_token', 'id', and 'data'
+    object.
   endpoint: update_supplier
   method: POST
   parameters:
@@ -391,11 +510,14 @@ tools:
         type: string
       data:
         type: object
+      access_token:
+        type: string
     required:
     - id
     - data
+    - access_token
 - name: delete_supplier
-  description: Permanently remove a supplier by ID.
+  description: Permanently remove a supplier by ID. Requires 'access_token'.
   endpoint: delete_supplier
   method: POST
   parameters:
@@ -403,17 +525,25 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: list_categorys
-  description: Fetch all records from categorys.
+  description: Fetch all records from categorys. Requires 'access_token'.
   endpoint: list_categorys
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
 - name: get_category
-  description: Get a specific category by its unique ID (GUID).
+  description: Get a specific category by its unique ID. Requires 'access_token' and
+    'id'.
   endpoint: get_category
   method: POST
   parameters:
@@ -421,10 +551,13 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: create_category
-  description: Create a new category record.
+  description: Create a new category. Requires 'access_token' and a 'data' object.
   endpoint: create_category
   method: POST
   parameters:
@@ -432,10 +565,14 @@ tools:
     properties:
       data:
         type: object
+      access_token:
+        type: string
     required:
     - data
+    - access_token
 - name: update_category
-  description: Modify an existing category record by ID.
+  description: Modify an existing category. Requires 'access_token', 'id', and 'data'
+    object.
   endpoint: update_category
   method: POST
   parameters:
@@ -445,11 +582,14 @@ tools:
         type: string
       data:
         type: object
+      access_token:
+        type: string
     required:
     - id
     - data
+    - access_token
 - name: delete_category
-  description: Permanently remove a category by ID.
+  description: Permanently remove a category by ID. Requires 'access_token'.
   endpoint: delete_category
   method: POST
   parameters:
@@ -457,17 +597,25 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: list_staffs
-  description: Fetch all records from staffs.
+  description: Fetch all records from staffs. Requires 'access_token'.
   endpoint: list_staffs
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token
 - name: get_staff
-  description: Get a specific staff by its unique ID (GUID).
+  description: Get a specific staff by its unique ID. Requires 'access_token' and
+    'id'.
   endpoint: get_staff
   method: POST
   parameters:
@@ -475,10 +623,13 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: create_staff
-  description: Create a new staff record.
+  description: Create a new staff. Requires 'access_token' and a 'data' object.
   endpoint: create_staff
   method: POST
   parameters:
@@ -486,10 +637,14 @@ tools:
     properties:
       data:
         type: object
+      access_token:
+        type: string
     required:
     - data
+    - access_token
 - name: update_staff
-  description: Modify an existing staff record by ID.
+  description: Modify an existing staff. Requires 'access_token', 'id', and 'data'
+    object.
   endpoint: update_staff
   method: POST
   parameters:
@@ -499,11 +654,14 @@ tools:
         type: string
       data:
         type: object
+      access_token:
+        type: string
     required:
     - id
     - data
+    - access_token
 - name: delete_staff
-  description: Permanently remove a staff by ID.
+  description: Permanently remove a staff by ID. Requires 'access_token'.
   endpoint: delete_staff
   method: POST
   parameters:
@@ -511,12 +669,19 @@ tools:
     properties:
       id:
         type: string
+      access_token:
+        type: string
     required:
     - id
+    - access_token
 - name: check_health
-  description: Check the health of the AutoCar backend API.
+  description: Check the health of the AutoCar backend API. Requires 'access_token'.
   endpoint: health_check
   method: POST
   parameters:
     type: object
-    properties: {}
+    properties:
+      access_token:
+        type: string
+    required:
+    - access_token

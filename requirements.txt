@@ -1,6 +1,5 @@
-flask
+fastapi
+uvicorn
 requests
-PyJWT
-cryptography
-python-dotenv
 PyYAML
+python-dotenv

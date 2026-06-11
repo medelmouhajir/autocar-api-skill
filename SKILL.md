@@ -1,38 +1,47 @@
 ---
 name: autocar-api
-description: Skill for interacting with the AutoCar Software API (USR v2.0) with explicit tools for each entity.
+description: Stateless skill for interacting with the AutoCar Software API (FastAPI, Port 8101).
 ---
 
-# AutoCar API Connector (USR v2.0)
+# AutoCar API Connector (Local Optimized)
 
-This skill provides explicit tools for managing the AutoCar Software API. It uses the ISLI Universal Skill Runtime (USR) v2.0 standard.
+This skill is a stateless FastAPI microservice designed for the local ISLI architecture. It operates on port **8101** and manages AutoCar API interactions by requiring the AI agent to pass tokens explicitly.
 
-## Primary Tools
+## Core Tools
 
 ### `login`
-Authenticate with your staff account.
+Authenticate with staff credentials. 
+- **Returns**: `accessToken` and `refreshToken`.
+- **Note**: You must save these tokens in your context.
 
-**Parameters:**
-- `email`: Your staff email.
-- `password`: Your staff password.
+### Entity Tools (45+ Tools)
+Specific tools for **Customers, Invoices, Parts, WorkOrders, Vehicles, PurchaseOrders, Suppliers, Categories, and Staff**.
 
-### Entity Tools (CRUD)
-The skill provides specific tools for **Customers, Invoices, Parts, WorkOrders, Vehicles, PurchaseOrders, Suppliers, Categories, and Staff**.
+**Stateless Pattern**:
+Every tool call (except `login`) requires an `access_token` parameter in the payload.
 
-Standard pattern for each entity (e.g., `customer`):
-- `list_customers`: Get all customers.
-- `get_customer`: Get a customer by `id`.
-- `create_customer`: Create a new customer using a `data` object.
-- `update_customer`: Update a customer using an `id` and a `data` object.
-- `delete_customer`: Remove a customer by `id`.
+Example: `get_customer`
+```json
+{
+  "id": "GUID_HERE",
+  "access_token": "TOKEN_FROM_LOGIN"
+}
+```
+
+Example: `list_invoices`
+```json
+{
+  "access_token": "TOKEN_FROM_LOGIN"
+}
+```
 
 ---
 
 ## Procedural Instructions for AI Agent
 
-1. **Authentication**: If you aren't logged in, use the `login` tool first.
-2. **Task Execution**:
-   - To list items, use the `list_<entity>s` tool.
-   - To find a specific record, use `get_<entity>`.
-   - To create or update, use `create_<entity>` or `update_<entity>` with the appropriate `data` JSON object.
-3. **Internal Auth**: All requests are automatically signed with `X-Internal-Auth`. The skill manages your session tokens internally.
+1. **Discovery**: This skill runs on port **8101**. Use tools as defined in `isli-skill.yaml`.
+2. **Stateless Auth**:
+   - Call `login` first.
+   - Extract the `accessToken` from the response.
+   - For every subsequent call, you **MUST** include `"access_token": "..."` in the JSON payload.
+3. **Health**: The container includes a Docker `HEALTHCHECK` and a `/health` endpoint for architecture compliance.

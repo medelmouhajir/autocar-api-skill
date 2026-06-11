@@ -2,9 +2,9 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install system dependencies if needed
+# Install curl for HEALTHCHECK
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    build-essential \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
@@ -12,12 +12,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-# Create directory for SQLite database
-RUN mkdir -p /app/data && chmod 777 /app/data
+EXPOSE 8101
 
-EXPOSE 8000
+# Docker Healthcheck
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD curl -f http://localhost:8101/health || exit 1
 
-ENV FLASK_APP=app.py
 ENV AUTOCAR_API_URL=https://auto.wan.ma
 
-CMD ["flask", "run", "--host=0.0.0.0", "--port=8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8101"]
