@@ -3,7 +3,7 @@ id: autocar-api
 name: AutoCar API Connector
 description: Connects to the AutoCar Software API with explicit, stateless tools (Optimized
   for local architecture).
-version: 3.0.0
+version: 3.1.0
 author: AI Agent
 category: workspace
 runtime:
